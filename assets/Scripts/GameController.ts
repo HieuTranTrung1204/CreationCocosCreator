@@ -17,8 +17,9 @@ export default class GameController extends cc.Component {
     @property(cc.Label) lblScore: cc.Label = null;
     public static GameState = 
     {
-        play : false, 
         isCollisionCursor : false, 
+        isTouched : false, 
+        isDie : false, 
         score : 0
     }
     onLoad () {}
@@ -31,10 +32,12 @@ export default class GameController extends cc.Component {
     }
     _onTouchStart(event) {
         cc.log("HieuLog: TAP SCREEN");
-        
-        GameController.GameState.play = true;
+        GameController.GameState.isTouched = true;
+
         if(GameController.GameState.isCollisionCursor) {
-            GameController.GameState.score += 1;
+            var score  = GameController.GameState.score;
+            cc.log("score:" + score.toString());
+            GameController.GameState.score = score + 1;
             this.lblScore.string = GameController.GameState.score.toString();
         }
         else {

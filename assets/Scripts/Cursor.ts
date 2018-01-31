@@ -34,11 +34,7 @@ export default class Cursor extends cc.Component {
         if (other.node.tag == self.node.tag) {
             cc.log("HieuLog Score++");
         }
-        if(GameController.GameState.play == true)
-        {
-            GameController.GameState.isCollisionCursor = true;
-       
-        }
+        GameController.GameState.isCollisionCursor = true;
     }
     
     onCollisionExit(other, self) {
