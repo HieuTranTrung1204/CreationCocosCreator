@@ -36,6 +36,8 @@ export default class GameController extends cc.Component {
         if(GameController.GameState.isCollisionCursor) {
             GameController.GameState.score += 1;
             this.lblScore.string = GameController.GameState.score.toString();
+        }
+        else {
             
         }
     }

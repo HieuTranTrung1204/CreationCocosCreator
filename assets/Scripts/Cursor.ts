@@ -28,8 +28,7 @@ export default class Cursor extends cc.Component {
     update (dt) {}
 
     onCollisionEnter(other, self) {
-        cc.log("onCollisionEnter");
-        cc.log("other.name" + other.name + " tag " + other.node.tag);
+        cc.log("onCollisionEnter other.name" + other.name + " tag " + other.node.tag);
         cc.log("self.name" + self.name + " tag " + self.node.tag);
 
         if (other.node.tag == self.node.tag) {
@@ -38,7 +37,14 @@ export default class Cursor extends cc.Component {
         if(GameController.GameState.play == true)
         {
             GameController.GameState.isCollisionCursor = true;
-            //other.node.destroy();
+       
         }
+    }
+    
+    onCollisionExit(other, self) {
+        cc.log("onCollisionExit other.name" + other.name + " tag " + other.node.tag);
+        GameController.GameState.isCollisionCursor = false;
+
+        other.node.destroy();
     }
 }
