@@ -11,21 +11,31 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class Obstacle extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
-
+    @property obj: cc.Prefab = null;
+    
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {}
 
     start () {
 
-    },
+    }
 
-    // update (dt) {},
+    update (dt) {
+
+    }
+
+    onCollisionEnter(other, self) {
+        cc.log("onCollisionEnter");
+        cc.log("other.name" + other.name + " tag " + other.node.tag);
+        cc.log("self.name" + self.name + " tag " + self.node.tag);
+
+        if (other.node.tag == self.node.tag) {
+            cc.log("HieuLog Score++");
+        }
+
+        this.node.destroy();
+    }
 }

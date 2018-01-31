@@ -10,32 +10,35 @@
 
 const {ccclass, property} = cc._decorator;
 
+import GameController from './GameController';
+
 @ccclass
-export default class CursorController extends cc.Component {
-
-    _isRotate: boolean;
-
-    @property(cc.Integer) speed : number = 0;
-
-    // LIFE-CYCLE CALLBACKS:
+export default class Cursor extends cc.Component {
 
     onLoad () {
-        // init logic
-        if (cc.director.setClearColor) {
-            cc.director.setClearColor(cc.Color.WHITE);
-        }
-     
-        this._isRotate = true;
+
+        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabledDebugDraw = true;
     }
 
     start () {
 
     }
 
-    update (dt) {
-        if (this._isRotate == true) {
-            var rotate = this.node.rotation + dt * this.speed;
-            this.node.rotation = rotate;
+    update (dt) {}
+
+    onCollisionEnter(other, self) {
+        cc.log("onCollisionEnter");
+        cc.log("other.name" + other.name + " tag " + other.node.tag);
+        cc.log("self.name" + self.name + " tag " + self.node.tag);
+
+        if (other.node.tag == self.node.tag) {
+            cc.log("HieuLog Score++");
+        }
+        if(GameController.GameState.play == true)
+        {
+            GameController.GameState.isCollisionCursor = true;
+            //other.node.destroy();
         }
     }
 }

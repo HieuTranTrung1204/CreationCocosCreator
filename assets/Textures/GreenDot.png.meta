@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "7b6c2f40-b96a-4f5a-8688-76716a8e9a74",
+  "uuid": "7f9a9f29-17ad-4aa0-b9cf-307701768cc2",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "GreenDot": {
       "ver": "1.0.3",
-      "uuid": "278c12dd-4d8e-4a58-bc17-eeea0ae58576",
-      "rawTextureUuid": "7b6c2f40-b96a-4f5a-8688-76716a8e9a74",
+      "uuid": "f01ce62b-73b3-467b-ad26-9711d48f0992",
+      "rawTextureUuid": "7f9a9f29-17ad-4aa0-b9cf-307701768cc2",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
