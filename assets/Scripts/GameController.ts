@@ -19,6 +19,7 @@ export default class GameController extends cc.Component {
     {
         isCollisionCursor : false, 
         isTouched : false, 
+        isPlayed : false, 
         isDie : false, 
         score : 0
     }
@@ -34,23 +35,40 @@ export default class GameController extends cc.Component {
         cc.log("HieuLog: TAP SCREEN");
         GameController.GameState.isTouched = true;
 
-        if(GameController.GameState.isCollisionCursor) {
-            var score  = GameController.GameState.score;
-            cc.log("score:" + score.toString());
-            GameController.GameState.score = score + 1;
-            this.lblScore.string = GameController.GameState.score.toString();
-        }
-        else {
-            
+        if(GameController.GameState.isCollisionCursor == false) {
+            GameController.GameState.isDie = true;
         }
     }
-   
+    
     _onTouchMove(event) {
        
     }
     _onTouchEnd(event) {
-        GameController.GameState.isCollisionCursor = false;
+        GameController.GameState.isTouched = false;
     }
 
-    update (dt) {}
+    update (dt) {
+        if(GameController.GameState.isPlayed == false) {
+            return;
+        }
+        if( GameController.GameState.isDie) {
+            cc.log("HieuLog: DIE");
+        }
+        if(GameController.GameState.isCollisionCursor && GameController.GameState.isTouched) {
+
+            var score  = GameController.GameState.score;
+
+            GameController.GameState.score = score + 1;
+            GameController.GameState.isCollisionCursor = false;
+            GameController.GameState.isTouched = false;
+
+            this.lblScore.string = GameController.GameState.score.toString();
+
+            cc.log("HieuLog Score++ :" + score.toString());
+
+        }
+       
+    }
+
+    
 }

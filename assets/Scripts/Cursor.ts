@@ -28,16 +28,24 @@ export default class Cursor extends cc.Component {
     update (dt) {}
 
     onCollisionEnter(other, self) {
-        cc.log("onCollisionEnter other.name" + other.name + " tag " + other.node.tag);
-        cc.log("self.name" + self.name + " tag " + self.node.tag);
-
-        if (other.node.tag == self.node.tag) {
-            cc.log("HieuLog Score++");
+        if(GameController.GameState.isPlayed == false) {
+            return;
         }
+
+        cc.log("onCollisionEnter other.name" + other.name + " tag " 
+        + other.node.tag + "self.name" + self.name + " tag " + self.node.tag);
+
+        // if (other.node.tag == self.node.tag) {
+        //     cc.log("HieuLog Score++");
+        // }
         GameController.GameState.isCollisionCursor = true;
     }
     
     onCollisionExit(other, self) {
+        if(GameController.GameState.isPlayed == false) {
+            return;
+        }
+        
         cc.log("onCollisionExit other.name" + other.name + " tag " + other.node.tag);
         GameController.GameState.isCollisionCursor = false;
 

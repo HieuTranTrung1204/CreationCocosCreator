@@ -13,25 +13,33 @@ const {ccclass, property} = cc._decorator;
 import GameController from './GameController';
 
 @ccclass
-export default class Obstacle extends cc.Component {
+export default class UIManager extends cc.Component {
 
-    // @property obj: cc.Prefab = null;
-    
+    @property(cc.Node) background: cc.Node = null;
+    @property(cc.Node) btnPlay: cc.Node = null;
+    @property(cc.Node) btnRetry: cc.Node = null;
+
+    public onClickPlay() {
+        cc.log("PLAY ...");
+        this.btnPlay.active = false;
+        GameController.GameState.isPlayed = true;
+    }
+
+    public onClickRetry() {
+        cc.log("RETRY ...");
+        this.btnRetry.active = false;
+    }
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {}
+    onLoad () {
+        cc.log("onLoad ...");
+        this.btnRetry.active = false;
+        this.background.active = false;
+    }
 
     start () {
 
     }
 
-    update (dt) {
-
-    }
-
-    // onCollisionEnter(other, self) {
-    //     cc.log("onCollisionEnter other.name" + other.name + " tag "
-    //      + other.node.tag + "self.name" + self.name + " tag " + self.node.tag);
-    //     this.node.destroy();
-    // }
+    // update (dt) {}
 }
