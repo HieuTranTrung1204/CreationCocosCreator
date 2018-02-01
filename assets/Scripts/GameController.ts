@@ -15,6 +15,7 @@ export default class GameController extends cc.Component {
 
     @property(cc.Canvas) canvas: cc.Canvas = null;
     @property(cc.Label) lblScore: cc.Label = null;
+
     public static GameState = 
     {
         isCollisionCursor : false, 
@@ -31,15 +32,31 @@ export default class GameController extends cc.Component {
         this.canvas.node.on(cc.Node.EventType.TOUCH_END, this._onTouchEnd.bind(this));
 
     }
+    OnGameStart () {
+        GameController.GameState.isCollisionCursor = false;
+        GameController.GameState.isTouched = false;
+        GameController.GameState.isPlayed = false;
+        GameController.GameState.isDie = false;
+        GameController.GameState.score = 0;
+
+    }
+
+    OnDie() {
+
+    }
+
     _onTouchStart(event) {
         cc.log("HieuLog: TAP SCREEN");
+        if(GameController.GameState.isPlayed == false) {
+            return;
+        }
+        
         GameController.GameState.isTouched = true;
 
         if(GameController.GameState.isCollisionCursor == false) {
             GameController.GameState.isDie = true;
         }
     }
-    
     _onTouchMove(event) {
        
     }
@@ -53,6 +70,7 @@ export default class GameController extends cc.Component {
         }
         if( GameController.GameState.isDie) {
             cc.log("HieuLog: DIE");
+            this.OnDie();
         }
         if(GameController.GameState.isCollisionCursor && GameController.GameState.isTouched) {
 

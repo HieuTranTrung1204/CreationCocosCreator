@@ -10,6 +10,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+import GameController from './GameController';
+
 @ccclass
 export default class CursorController extends cc.Component {
 
@@ -33,6 +35,10 @@ export default class CursorController extends cc.Component {
     }
 
     update (dt) {
+        if(GameController.GameState.isDie) {
+            return;
+        }
+
         if (this._isRotate == true) {
             var rotate = this.node.rotation + dt * this.speed;
             this.node.rotation = rotate;

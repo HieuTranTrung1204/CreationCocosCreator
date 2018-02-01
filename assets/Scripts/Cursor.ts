@@ -50,5 +50,8 @@ export default class Cursor extends cc.Component {
         GameController.GameState.isCollisionCursor = false;
 
         other.node.destroy();
+        // if(GameController.GameState.isTouched == false) {
+        //     GameController.GameState.isDie = true;
+        // }
     }
 }

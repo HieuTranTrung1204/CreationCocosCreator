@@ -18,10 +18,13 @@ export default class UIManager extends cc.Component {
     @property(cc.Node) background: cc.Node = null;
     @property(cc.Node) btnPlay: cc.Node = null;
     @property(cc.Node) btnRetry: cc.Node = null;
+    @property(cc.Label) lblTapTo: cc.Label = null;
 
     public onClickPlay() {
         cc.log("PLAY ...");
         this.btnPlay.active = false;
+        this.lblTapTo.node.active = false;
+        
         GameController.GameState.isPlayed = true;
     }
 
